@@ -10,3 +10,9 @@ __pycache__/
 *.pyc
 .venv/
 venv/
+
+# Generated charts (re-create with: python -m tracker plot)
+charts/
+
+# Re-created by: python -m tracker compare
+data/comparison.csv
