@@ -1,0 +1,12 @@
+# Local secrets
+.env
+
+# Spotipy's OAuth token cache (contains access and refresh tokens)
+.cache
+.cache-*
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/

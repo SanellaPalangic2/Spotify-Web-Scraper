@@ -7,16 +7,26 @@ import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 
 import csv
+import os
+import sys
 from datetime import datetime
 
 import pandas as pd
 import matplotlib.pyplot as plt
 
 
-# Replace with your Spotify app credentials
-CLIENT_ID = "54e446e5efb34d83bcf454fff1f6caca"
-CLIENT_SECRET = "78f95b2154a74a12975a4ab97ffde538"
-REDIRECT_URI = "http://localhost:3000"  # This must match the Redirect URI in your Spotify app
+# Spotify app credentials come from environment variables, never from the code.
+# Set SPOTIPY_CLIENT_ID and SPOTIPY_CLIENT_SECRET before running (see README).
+CLIENT_ID = os.getenv("SPOTIPY_CLIENT_ID")
+CLIENT_SECRET = os.getenv("SPOTIPY_CLIENT_SECRET")
+# Must match the Redirect URI configured in your Spotify app
+REDIRECT_URI = os.getenv("SPOTIPY_REDIRECT_URI", "http://localhost:3000")
+
+if not CLIENT_ID or not CLIENT_SECRET:
+    sys.exit(
+        "Missing Spotify credentials. Set the SPOTIPY_CLIENT_ID and "
+        "SPOTIPY_CLIENT_SECRET environment variables (see README)."
+    )
 
 # Define the required scope for permissions
 SCOPE = "playlist-read-private playlist-read-collaborative"
